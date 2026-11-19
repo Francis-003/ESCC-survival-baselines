@@ -1,0 +1,22 @@
+name: paper-mlp-cox
+channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+dependencies:
+  - python=3.10.22
+  - pip
+  - pip:
+      - --index-url https://pypi.tuna.tsinghua.edu.cn/simple
+      - --extra-index-url https://mirror.sjtu.edu.cn/pytorch-wheels/cpu/
+      - numpy==1.26.4
+      - scipy==1.14.1
+      - pandas==2.2.3
+      - scikit-learn==1.5.2
+      - scikit-survival==0.23.1
+      - joblib==1.4.2
+      - pytest==8.3.5
+      - torch==2.8.0+cpu
+      - matplotlib==3.10.8
+# Local execution clones .envs/paper_baselines offline, then adds the two packages.
+# The experiment uses CPU only. Exact installed dependencies are frozen in input_audit.json.
+# Verified Windows CPython 3.10 CPU wheel SHA256:
+# 7cc4af6ba954f36c2163eab98cf113c137fc25aa8bbf1b06ef155968627beed2

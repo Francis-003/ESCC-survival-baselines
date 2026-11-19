@@ -1,0 +1,29 @@
+{
+  "days_per_month": 30.4375,
+  "auc_months": [12, 24, 36],
+  "auc_admin_months": 37,
+  "seed_base": 20261019,
+  "workers": 2,
+  "rsf": {
+    "n_estimators": 200,
+    "min_samples_split": 10,
+    "leaf_grid": [3, 5, 10],
+    "max_features_grid": ["sqrt", 0.5]
+  },
+  "cox": {
+    "lambdas": [0.0001, 0.001, 0.01, 0.1, 1, 10, 100, 1000, 10000],
+    "ties": "efron",
+    "tol": 1e-9,
+    "iterations": [1000, 10000]
+  },
+  "ct": {
+    "profile": "scheme_a_xy1mm_2d",
+    "crop_margin_mm": 30.0,
+    "interpolation_support_mm": 1.0,
+    "bin_width": 25,
+    "geometry_tolerance": 1e-5,
+    "feature_count": 107,
+    "workers": 2
+  },
+  "expected": {"hebei": 407, "fujian": 234, "fujian_100": 100, "ct_eligible": 639}
+}

@@ -1,0 +1,29 @@
+name: paper-baselines
+channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+dependencies:
+  - python=3.10.22
+  - pip
+  - pip:
+      - --index-url https://pypi.tuna.tsinghua.edu.cn/simple
+      - --extra-index-url https://mirror.sjtu.edu.cn/pytorch-wheels/cpu/
+      - numpy==1.26.4
+      - scipy==1.14.1
+      - pandas==2.2.3
+      - scikit-learn==1.5.2
+      - scikit-survival==0.23.1
+      - openpyxl==3.1.5
+      - pydicom==3.0.2
+      - python-gdcm==3.0.24.1
+      - nibabel==5.4.2
+      - SimpleITK==2.5.2
+      - PyWavelets==1.8.0
+      - pykwalify==1.8.0
+      - ruamel.yaml==0.19.1
+      - docopt==0.6.2
+      - joblib==1.4.2
+      - pytest==8.3.5
+      - torch==2.8.0+cpu
+      - matplotlib==3.10.8
+# Install PyRadiomics 3.0.1 after NumPy is installed, using the platform-specific
+# no-build-isolation command in README.md (Windows needs the local compiler).

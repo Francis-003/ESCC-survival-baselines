@@ -1,0 +1,20 @@
+{
+  "study": "Paper baseline extension: MLP-Cox versus frozen Cox and RSF",
+  "date": "2026-11-08",
+  "modalities": ["C", "N", "CT", "CN", "CCT", "CNCT"],
+  "outer_folds": 5,
+  "inner_folds": 5,
+  "cohorts": {"Hebei": 407, "Fujian_source": 234, "Fujian_all": 232, "Fujian_100": 100},
+  "days_per_month": 30.4375,
+  "auc_months": [12, 24, 36],
+  "auc_admin_months": 37,
+  "seed_base": 20261019,
+  "seeds": [11, 29, 47],
+  "primary_seed": 11,
+  "seed_derivation": "label + 1000*outer_fold + (inner_fold+1 for inner fitting; 0 for outer refit)",
+  "mlp": {"hidden": [[32], [64, 32]], "weight_decay": [0.001, 0.01], "dropout": 0.2, "lr": 0.001, "optimizer": "AdamW", "max_epochs": 150, "patience": 20, "min_delta": 0.0001, "ties": "efron", "loss": "event-mean negative full-risk-set Cox partial likelihood"},
+  "selection": {"metric": "mean inner-fold Harrell C", "required_valid_folds": 5, "tie_tolerance": 1e-8, "tie_break": "smaller hidden architecture, then larger weight_decay", "early_stop": "inner validation Cox loss; restore best checkpoint", "outer_epochs": "median of the five best epochs of the selected candidate", "seed_sensitivity": "each seed repeats the complete inner selection and outer refit; no seed ensemble or best-seed selection"},
+  "evaluation": {"metrics": ["harrell_c", "auc_12", "auc_24", "auc_36"], "primary_population": "Fujian_all", "supplement_population": "Fujian_100", "aggregation": "arithmetic mean over the five outer-fold metrics; report min/max, not confidence intervals", "bootstrap_draws": 2000, "bootstrap_seed": 20261108, "minimum_valid_fraction": 0.9, "bootstrap_metric": "harrell_c", "bootstrap_unit": "paired patient IDs across all algorithms/modalities; Hebei resampled within each fixed test fold", "uncertainty_scope": "conditional on trained models and frozen folds; excludes retraining, tuning, split variation and historical selection uncertainty", "modality_contrasts": [["CN", "C"], ["CCT", "C"], ["CNCT", "CN"], ["CNCT", "CCT"]], "historical_bias": "Fujian outcomes were previously examined; the frozen 100-patient subset was selected after performance inspection and overlaps the 232-patient cohort. All external conclusions remain exploratory."},
+  "execution": {"device": "cpu", "workers": 2, "torch_threads": 1, "old_baselines": "read-only reload and metric recomputation; no retraining or overwriting"},
+  "inputs": {"model_table": "try_output/data_preparation/model_table.tsv", "outer_folds": "hebei_folds.csv", "inner_folds": "hebei_inner_folds.csv", "fujian_100": "fujian_100_ids.csv", "baseline_config": "config.json", "baseline_module": "baseline_common.py", "raw_audit": "try_output/data_preparation/input_audit.json", "cox": "try_output/cox_fujian_uniform", "rsf": "try_output/rsf_fujian_uniform"}
+}
