@@ -1,6 +1,6 @@
 """Nested CV MLP Cox training; external cohorts are feature-only inference inputs.
 
-Run from any directory: python -B try_src/mlp_cox/train_mlp.py --workers 2
+Run from any directory: python -B mlp_cox/train_mlp.py --workers 2
 Checkpoints are the source of truth. Summary TSV files are rebuilt after loading
 every matching checkpoint, including when a smoke run is resumed.
 """

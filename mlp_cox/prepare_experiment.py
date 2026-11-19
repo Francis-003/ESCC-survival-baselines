@@ -17,8 +17,8 @@ import joblib
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
-SRC = ROOT / 'try_src/mlp_cox'
+ROOT = Path(__file__).resolve().parents[1]
+SRC = ROOT / 'mlp_cox'
 OUT = ROOT / 'try_output/mlp_cox'
 sys.path.insert(0, str(ROOT))
 import baseline_common as bc

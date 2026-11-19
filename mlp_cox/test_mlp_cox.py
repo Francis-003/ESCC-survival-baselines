@@ -18,7 +18,7 @@ from sksurv.util import Surv
 if importlib.util.find_spec("prepare_experiment") is None:
     # Allow synthetic model/protocol tests while the preparation module is
     # being authored in parallel. Normal runs import the real module.
-    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
     import baseline_common as _baseline_common
     _stub = types.ModuleType("prepare_experiment")
     _stub.bc = _baseline_common

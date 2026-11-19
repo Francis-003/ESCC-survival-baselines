@@ -18,7 +18,7 @@ Building PyRadiomics from source requires a compiler compatible with the Python
 installation. The preparation tests use synthetic images and records.
 
 ```sh
-python -m pytest -q test_baselines.py try_src/mlp_cox/test_mlp_cox.py
+python -m pytest -q test_baselines.py mlp_cox/test_mlp_cox.py
 ```
 
 ## Controlled inputs
@@ -52,9 +52,9 @@ the authorized inputs. All generated files are local under `try_output/`.
 
 ```sh
 python run_all.py --data-root /path/to/data --manifest /path/to/manifest.csv
-python try_src/mlp_cox/prepare_experiment.py --data-root /path/to/data --manifest /path/to/manifest.csv
-python try_src/mlp_cox/train_mlp.py --workers 2
-python try_src/mlp_cox/compare_models.py
+python mlp_cox/prepare_experiment.py --data-root /path/to/data --manifest /path/to/manifest.csv
+python mlp_cox/train_mlp.py --workers 2
+python mlp_cox/compare_models.py
 ```
 
 The first command prepares clinical and lymph-node variables, extracts tumor
